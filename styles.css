@@ -1,3 +1,7 @@
+body {
+  background-color: #00a4a8;
+}
+
 #game-interface {
   display: flex;
   flex-direction: column;
@@ -6,6 +10,8 @@
 }
 
 #screen {
+  margin-top: 50px;
+  border-radius: 25px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -27,10 +33,18 @@
 
 #button-panel form input {
   max-width: 75px;
-  height: 32px;
+  height: 44px;
   margin: auto 5px;
   font-size: 1.5em;
   text-align: center;
+  border: none;
+  border-radius: 6px;
+}
+
+input:focus-visible {
+  outline: 2px solid #40ded0;
+  outline-offset: -3px;
+  box-shadow: 0 0 13px #00395a;
 }
 
 button {
@@ -45,7 +59,7 @@ button {
 }
 
 #start-play.disabled {
-  background-color: thistle;
+  background-color: #fbcccc;
 }
 
 .row {
@@ -63,4 +77,12 @@ button {
 
 .cell.toggle {
   background-color: pink;
+}
+
+.error {
+  z-index: 10;
+  margin: 28%;
+  background-color: #fff;
+  height: 300px;
+  width: 550px;
 }

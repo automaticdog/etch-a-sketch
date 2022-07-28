@@ -4,7 +4,6 @@ let USER_INPUT_COLS = null;
 let USER_INPUT_ROWS = null;
 let cols = USER_INPUT_COLS || DEFAULT_COLS;
 let rows = USER_INPUT_ROWS || DEFAULT_ROWS;
-const NUM_CELLS = cols * rows;
 
 const drawSpace = document.getElementById('screen');
 const drawingAreaWidth = 960;
@@ -17,7 +16,37 @@ function generateDrawingArea() {
 
 generateDrawingArea();
 
+function getUserInputCols() {
+  console.log(document.querySelector('input[name="gridcols"]').value);
+  if (document.querySelector(`input[name="gridcols"]`).value === '') {
+    return;
+  } else if (document.querySelector(`input[name="gridcols"]`).value <= 300) {
+    cols = document.querySelector('input[name="gridcols"]').value;
+  }
+  return;
+};
+
+// shows error popup when user input is too high
+function inputError() {
+  const errorMsg = document.createElement('div');
+  document.querySelector('#screen').appendChild(errorMsg);
+  errorMsg.classList.add('error')
+}
+
+function getUserInputRows() {
+  console.log(document.querySelector('input[name="gridrows"]').value);
+  if (document.querySelector(`input[name="gridrows"]`).value === '') {
+    return;
+  } else if (document.querySelector(`input[name="gridrows"]`).value <= 300) {
+    rows = document.querySelector('input[name="gridrows"]').value;
+  }
+  return;
+};
+
 function createCells() {
+  getUserInputCols();
+  getUserInputRows();
+  const NUM_CELLS = cols * rows;
   for (let i = 0; i < NUM_CELLS; i++) {
     const newCell = document.createElement('div');
     newCell.classList.add('cell');
@@ -25,22 +54,6 @@ function createCells() {
     newCell.style.width = `${drawingAreaWidth / cols}px`;
     drawSpace.appendChild(newCell);
   }
-};
-
-function getUserInputCols() {
-  console.log(document.querySelector('input[name="gridcols"]').value);
-  if (document.querySelector(`input[name="gridcols"]`).value === '') {
-    return;
-  }
-  cols = document.querySelector('input[name="gridcols"]').value;
-};
-
-function getUserInputRows() {
-  console.log(document.querySelector('input[name="gridrows"]').value);
-  if (document.querySelector(`input[name="gridrows"]`).value === '') {
-    return;
-  }
-  rows = document.querySelector('input[name="gridrows"]').value;
 };
 
 const playButton = document.getElementById('start-play');
@@ -57,7 +70,7 @@ playButton.addEventListener('click', () => {
     });
   });
   playButton.setAttribute('disabled', '');
-  // playButton.classList.add('disabled');
+  playButton.classList.add('disabled');
 });
 
 clearButton.addEventListener('click', () => {
@@ -71,7 +84,7 @@ resetButton.addEventListener('click', () => {
     drawSpace.removeChild(drawSpace.lastChild);
   }
   playButton.disabled = false;
-  // playButton.classList.remove('disabled');
+  playButton.classList.remove('disabled');
   document.querySelectorAll('.cell').forEach(cell => {
     cell.classList.remove('toggle');
   });
