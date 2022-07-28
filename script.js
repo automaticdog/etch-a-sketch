@@ -38,4 +38,3 @@ playButton.addEventListener('click', () => {
 function setColor() {
     document.querySelector('.cell').classList.add('toggle');
 }
-
