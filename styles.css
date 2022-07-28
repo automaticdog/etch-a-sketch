@@ -49,18 +49,18 @@ button {
 }
 
 .row {
-  height: 50px;
+  /* height: 50px; */
   background-color: lightgoldenrodyellow;
   display: flex;
 }
 
 .cell {
-  height: 50px;
+  /* height: 50px; */
   background-color: turquoise;
-  flex-basis: 1;
+  flex-basis: .5;
   flex-grow: 1;
 }
 
 .cell.toggle {
-  background-color: magenta;
+  background-color: pink;
 }

@@ -13,7 +13,7 @@ drawSpace.style.width = `${drawingAreaWidth}px`;
 function generateDrawingArea() {
   drawSpace.style.height = '800px';
   drawSpace.style.backgroundColor = 'turquoise';
-}
+};
 
 generateDrawingArea();
 
@@ -25,17 +25,23 @@ function createCells() {
     newCell.style.width = `${drawingAreaWidth / cols}px`;
     drawSpace.appendChild(newCell);
   }
-}
+};
 
 function getUserInputCols() {
   console.log(document.querySelector('input[name="gridcols"]').value);
+  if (document.querySelector(`input[name="gridcols"]`).value === '') {
+    return;
+  }
   cols = document.querySelector('input[name="gridcols"]').value;
-}
+};
 
 function getUserInputRows() {
   console.log(document.querySelector('input[name="gridrows"]').value);
+  if (document.querySelector(`input[name="gridrows"]`).value === '') {
+    return;
+  }
   rows = document.querySelector('input[name="gridrows"]').value;
-}
+};
 
 const playButton = document.getElementById('start-play');
 const clearButton = document.getElementById('clear');
@@ -48,7 +54,7 @@ playButton.addEventListener('click', () => {
   document.querySelectorAll('.cell').forEach(cell => {
     cell.addEventListener('mouseover', () => {
       document.getElementById(cell.id).classList.add('toggle');
-    })
+    });
   });
   playButton.setAttribute('disabled', '');
   // playButton.classList.add('disabled');
@@ -57,8 +63,8 @@ playButton.addEventListener('click', () => {
 clearButton.addEventListener('click', () => {
   document.querySelectorAll('.cell').forEach(cell => {
     cell.classList.remove('toggle');
-  })
-})
+  });
+});
 
 resetButton.addEventListener('click', () => {
   while (drawSpace.firstChild) {
@@ -68,5 +74,5 @@ resetButton.addEventListener('click', () => {
   // playButton.classList.remove('disabled');
   document.querySelectorAll('.cell').forEach(cell => {
     cell.classList.remove('toggle');
-  })
+  });
 });
