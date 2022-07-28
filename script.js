@@ -10,7 +10,7 @@ const drawingAreaWidth = 960;
 drawSpace.style.width = `${drawingAreaWidth}px`;
 
 function generateDrawingArea() {
-  drawSpace.style.height = '800px';
+  drawSpace.style.height = '74vh';
   drawSpace.style.backgroundColor = 'turquoise';
 };
 

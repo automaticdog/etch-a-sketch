@@ -2,6 +2,15 @@ body {
   background-color: #00a4a8;
 }
 
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 5em;
+  letter-spacing: 4px;
+  color: #fff;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
+
 #game-interface {
   display: flex;
   flex-direction: column;
@@ -10,7 +19,7 @@ body {
 }
 
 #screen {
-  margin-top: 50px;
+  margin-top: 15px;
   border-radius: 25px;
   display: flex;
   flex-wrap: wrap;
@@ -37,6 +46,7 @@ body {
   margin: auto 5px;
   font-size: 1.5em;
   text-align: center;
+  color: lightcoral;
   border: none;
   border-radius: 6px;
 }
