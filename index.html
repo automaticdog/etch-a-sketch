@@ -6,10 +6,22 @@
   <script src="script.js" defer></script>
 </head>
 <body>
-  <div id="screen">
-    <!-- "pixel" divs will go here -->
-  </div>
-  <div>
-    <button id="start-play">Let's play!</button>
+  <div id="game-interface">
+    <div id="screen">
+      <!-- "pixel" divs will populate here -->
+    </div>
+    <div id="button-panel">
+      <div>
+        <form>
+          <input type="text" id="gridcols" name="gridcols" placeholder="16">
+          <input type="text" id="gridrows" name="gridrows" placeholder="16">
+        </form>
+      </div>
+      <div>
+        <button id="start-play">Let's play!</button>
+        <button id="clear">Clear</button>
+        <button id="reset">Reset</button>
+      </div>
+    </div>
   </div>
 </body>

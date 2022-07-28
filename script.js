@@ -1,40 +1,72 @@
-const DEFAULT_SIZE = 16;
-const drawSpace = document.getElementById('screen');
+const DEFAULT_COLS = 16;
+const DEFAULT_ROWS = 16;
+let USER_INPUT_COLS = null;
+let USER_INPUT_ROWS = null;
+let cols = USER_INPUT_COLS || DEFAULT_COLS;
+let rows = USER_INPUT_ROWS || DEFAULT_ROWS;
+const NUM_CELLS = cols * rows;
 
-function createRows() {
-  for (let i = 0; i < DEFAULT_SIZE; i++) {
-    const row = document.createElement('div');
-    row.classList.add('row');
-    row.setAttribute('id', `row-${i+1}`)
-    drawSpace.appendChild(row);
+const drawSpace = document.getElementById('screen');
+const drawingAreaWidth = 960;
+drawSpace.style.width = `${drawingAreaWidth}px`;
+
+function generateDrawingArea() {
+  drawSpace.style.height = '800px';
+  drawSpace.style.backgroundColor = 'turquoise';
+}
+
+generateDrawingArea();
+
+function createCells() {
+  for (let i = 0; i < NUM_CELLS; i++) {
+    const newCell = document.createElement('div');
+    newCell.classList.add('cell');
+    newCell.setAttribute('id', `cell-${i+1}`);
+    newCell.style.width = `${drawingAreaWidth / cols}px`;
+    drawSpace.appendChild(newCell);
   }
 }
 
-function createCells() {
-  for (let i = 0; i < DEFAULT_SIZE; i++) {
-    const newCell = document.createElement('div');
-    newCell.classList.add('cell');
-    // cell.setAttribute('id', `cell-${i+1}`);
-    document.querySelector(`#row-${i+1}`).appendChild(newCell);
-  }
+function getUserInputCols() {
+  console.log(document.querySelector('input[name="gridcols"]').value);
+  cols = document.querySelector('input[name="gridcols"]').value;
+}
+
+function getUserInputRows() {
+  console.log(document.querySelector('input[name="gridrows"]').value);
+  rows = document.querySelector('input[name="gridrows"]').value;
 }
 
 const playButton = document.getElementById('start-play');
+const clearButton = document.getElementById('clear');
+const resetButton = document.getElementById('reset');
 
 playButton.addEventListener('click', () => {
-  createRows();
-  for (let i = 0; i < DEFAULT_SIZE; i++) {
-    createCells();
-  }
+  getUserInputCols();
+  getUserInputRows();
+  createCells();
   document.querySelectorAll('.cell').forEach(cell => {
     cell.addEventListener('mouseover', () => {
-      console.log(`i'm a cell event listener!`);
-      console.log(cell);
-      setColor();
+      document.getElementById(cell.id).classList.add('toggle');
     })
-  })
+  });
+  playButton.setAttribute('disabled', '');
+  // playButton.classList.add('disabled');
 });
 
-function setColor() {
-    document.querySelector('.cell').classList.add('toggle');
-}
+clearButton.addEventListener('click', () => {
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.classList.remove('toggle');
+  })
+})
+
+resetButton.addEventListener('click', () => {
+  while (drawSpace.firstChild) {
+    drawSpace.removeChild(drawSpace.lastChild);
+  }
+  playButton.disabled = false;
+  // playButton.classList.remove('disabled');
+  document.querySelectorAll('.cell').forEach(cell => {
+    cell.classList.remove('toggle');
+  })
+});
