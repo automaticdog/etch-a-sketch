@@ -1,0 +1,25 @@
+#screen {
+  width: 960px;
+}
+
+button {
+  bordern: none;
+  background-color: lightcoral;
+  color: #fff;
+  font-weight: bold;
+}
+
+.row {
+  height: 50px;
+  background-color: lightgoldenrodyellow;
+  display: flex;
+}
+
+.cell {
+  background-color: lightseagreen;
+  flex-basis: 100%;
+}
+
+.toggle {
+  background-color: magenta;
+}
