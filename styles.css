@@ -23,6 +23,7 @@ h1 {
   border-radius: 25px;
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
 }
 
 #button-panel {
